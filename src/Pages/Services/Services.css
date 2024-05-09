@@ -1,0 +1,113 @@
+.f-group {
+width: 300px;
+display: inline-block;
+margin-bottom: 15px;
+}
+.contact-f {
+  display: flex;
+  justify-content: center;
+}
+.f-group input,
+textarea {
+  width: 90%;
+  padding: 0.8rem;
+  border-radius: 10px;
+  display: block;
+  border: 2px solid #f17732;
+  outline-color: #565acf;
+}
+.f-group label {
+  text-transform: uppercase;
+  color: var(--primary-text);
+  font-weight: 600;
+  margin: 10px 0;
+}
+.column {
+  margin-right: 20px;
+}
+.f-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.msg-btn {
+  align-self: center;
+}
+
+.WorkProcess-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 50px;
+    transform: scale(0.9);
+  }
+  .WorkProcess-card {
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 2rem;
+    gap: 20px;
+    border-radius: 20px;
+    transition: all 0.4s linear;
+  }
+  .WorkProcess-card h1 {
+    /* color: var(--title-text); */
+    color: transparent;
+    font-weight: 900;
+    font-size: 3rem;
+    text-shadow: 0 10px 0 #ffe3d3;
+    -webkit-text-stroke: 2px #f17732;
+  }
+
+  .WorkProcess-card h3 {
+    /* color: var(--title-text); */
+    color: transparent;
+    font-weight: 900;
+    font-size: 3rem;
+    text-shadow: 0 10px 0 #ffe3d3;
+    -webkit-text-stroke: 2px #f17732;
+  }
+  .WorkProcess-card h5 {
+    color: var(--title-text);
+    font-weight: 800;
+    font-size: 1.4rem;
+  }
+  .WorkProcess-card p {
+    color: var(--pera-text);
+    font-size: 14px;
+    line-height: 2;
+  }
+  .WorkProcess-card.active {
+    background-color: var(--hover-text) !important;
+    transform: translateY(-20px);
+  }
+  .WorkProcess-card.active h5 {
+    color: white !important;
+  }
+  .WorkProcess-card.active p {
+    color: white !important;
+  }
+  .WorkProcess-card.active h1 {
+    text-shadow: 0 10px 0 #f38f5e;
+    -webkit-text-stroke: 2px #fff;
+  }
+  
+  /* media query */
+  @media screen and (max-width: 991px) {
+    .WorkProcess-cards {
+      grid-template-columns: repeat(2, 1fr);
+      transform: scale(1);
+    }
+    .WorkProcess-card.active {
+      background-color: var(--hover-text) !important;
+      transform: translateY(0);
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .WorkProcess-cards {
+      grid-template-columns: repeat(1, 1fr);
+      transform: scale(0.9);
+    }
+  }
+  

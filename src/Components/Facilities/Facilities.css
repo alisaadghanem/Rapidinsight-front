@@ -1,0 +1,122 @@
+.pics-symp {
+  display: inline-block;
+  width: 250px;
+  height: 250px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.pics-prev {
+  display: inline-block;
+  width: 250px;
+  height: 250px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.prev-p {
+  color: #23396b !important;
+  font-weight: bold !important;
+  font-size: 14px;
+  flex: 2;
+  overflow-wrap: break-word !important;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+.symptoms-row {
+  gap: 10%;
+  display: flex;
+  justify-content: center;
+}
+.facility-cards {
+  display: grid;
+  transform: scale(0.9);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow values as needed */
+  border-radius: 20px;
+  width: 1150px;
+}
+.facility-card {
+  width: 1150px;
+  height: 350px;
+  align-items: center;
+  flex-direction: column;
+  padding: 2rem;
+  transition: all 0.4s linear;
+  border-radius: 20px;
+}
+.facility-card h1 {
+  /* color: var(--title-text); */
+  color: transparent;
+  font-weight: 900;
+  font-size: 3rem;
+  text-shadow: 0 10px 0 #ffe3d3;
+  -webkit-text-stroke: 2px #f17732;
+  justify-content: start;
+  padding-bottom: 30px;
+}
+.facility-card h5 {
+  color: var(--title-text);
+  font-weight: 800;
+  font-size: 1.4rem;
+}
+.facility-card p {
+  color: var(--pera-text);
+  font-size: 16px;
+  line-height: 2;
+}
+.facility-card.active {
+  background-color: var(--hover-text) !important;
+}
+.facility-card.active h5 {
+  color: white !important;
+}
+.facility-card.active p {
+  color: white !important;
+}
+.facility-card.active h1 {
+  text-shadow: 0 10px 0 #f38f5e;
+  -webkit-text-stroke: 2px #fff;
+}
+.facility-cards .carousel-slider {
+  transition: opacity 1s ease-in-out;
+  overflow: hidden;
+}
+
+.facility-cards .slide {
+  opacity: 0;
+  background: transparent;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.facility-cards .slide.selected {
+  opacity: 1;
+}
+
+/* media query */
+@media screen and (max-width: 991px) {
+  .facility-cards {
+    grid-template-columns: repeat(2, 1fr);
+    transform: scale(1);
+  }
+  .facility-card.active {
+    background-color: var(--hover-text) !important;
+    transform: translateY(0);
+  }
+}
+@media screen and (max-width: 767px) {
+  .facility-cards {
+    grid-template-columns: repeat(1, 1fr);
+    transform: scale(0.9);
+  }
+}
+
+/* media query */
+@media screen and (max-width: 767px) {
+  .facility-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media screen and (max-width: 480px) {
+  .facility-wrapper {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

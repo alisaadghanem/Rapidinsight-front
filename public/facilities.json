@@ -1,0 +1,48 @@
+[
+    {
+        "facilities":"Type 1 ",
+        "thumb": "Type 1 diabetes is where your blood glucose (sugar) level is too high because your body can’t make a hormone called insulin. This happens because your body attacks the cells in your pancreas that make the insulin, meaning you can’t produce any at all. We all need insulin to live. It does an essential job. It allows the glucose in our blood to enter our cells and fuel our bodies. When you have type 1 diabetes, your body still breaks down the carbohydrate from food and drink and turns it into glucose.",
+        "link": "https://my.clevelandclinic.org/health/diseases/21500-type-1-diabetes"
+    },
+    {
+        "facilities":"Type 2 ",
+        "thumb": "With type 2 diabetes the insulin your pancreas makes can’t work properly, or your pancreas can’t make enough insulin. This means your blood glucose (sugar) levels keep rising. Around 90% of people with diabetes in the UK have type 2. It is a serious condition and can be lifelong. Having type 2 diabetes without treatment means that high sugar levels in your blood can seriously damage parts of your body, including your eyes, heart and feet. These are called the complications of diabetes.",
+        "link": "https://my.clevelandclinic.org/health/diseases/21501-type-2-diabetes"
+    },
+    {
+        "facilities":"Pre-diabetes",
+        "thumb": "This is a rare form of diabetes that occurs within the first six months of life. It’s also a form of monogenic diabetes. About 50% of babies with neonatal diabetes have the lifelong form called permanent neonatal diabetes mellitus. For the other half, the condition disappears within a few months from onset, but it can come back later in life. This is called transient neonatal diabetes mellitus.According to the American Diabetes Association, for people 45 years old with prediabetes, the 10-year risk of developing Type 2 diabetes is 9% to 14%.",
+        "link": "https://my.clevelandclinic.org/health/diseases/21498-prediabetes"
+    },
+    {
+        "facilities": "Gestational diabetes",
+        "thumb": "Gestational diabetes (GD) is a type of diabetes that develops in pregnancy when blood sugar levels get too high. GD usually appears during the middle of pregnancy, between 24 and 28 weeks. Developing GD doesn’t mean you already had diabetes before you got pregnant. The condition appears because of the pregnancy. People with Type 1 and Type 2 diabetes have their own, separate challenges when it comes to pregnancy.",
+        "link": "https://my.clevelandclinic.org/health/diseases/9012-gestational-diabetes"
+    },
+    {
+        "facilities": "Type 3c diabetes",
+        "thumb": "Type 3c diabetes develops when your pancreas experiences damage that affects its ability to produce insulin. Conditions like chronic pancreatitis and cystic fibrosis can lead to pancreas damage that causes diabetes. Having your pancreas removed (pancreatectomy) also results in Type 3c diabetes. Diabetes is a condition that happens when your blood sugar (glucose) is too high. It develops when your pancreas doesn’t make any or enough insulin (a hormone), or your body isn’t responding to the effects of insulin properly.",
+        "link": "https://my.clevelandclinic.org/health/diseases/24953-type-3c-diabetes"
+    },
+    {
+        "facilities": "Latent autoimmune diabetes in adults",
+        "thumb": "Like Type 1 diabetes, LADA also results from an autoimmune reaction, but it develops much more slowly than Type 1. People diagnosed with LADA are usually over the age of 30.",
+        "link": "https://my.clevelandclinic.org/health/diseases/7104-diabetes"
+    },
+    {
+        "facilities": "Maturity-onset diabetes of the young",
+        "thumb": "MODY, also called monogenic diabetes, happens due to an inherited genetic mutation that affects how your body makes and uses insulin. There are currently over 10 different types of MODY. It affects up to 5% of people with diabetes and commonly runs in families.",
+        "link": "https://my.clevelandclinic.org/health/diseases/7104-diabetes"
+    },
+    {
+        "facilities": "Neonatal diabetes",
+        "thumb": "This is a rare form of diabetes that occurs within the first six months of life. It’s also a form of monogenic diabetes. About 50% of babies with neonatal diabetes have the lifelong form called permanent neonatal diabetes mellitus. For the other half, the condition disappears within a few months from onset, but it can come back later in life. This is called transient neonatal diabetes mellitus.",
+        "link": "https://my.clevelandclinic.org/health/diseases/7104-diabetes"
+    },
+    {
+    "facilities": "Brittle diabetes",
+    "thumb": "Brittle diabetes is diabetes that’s especially difficult to manage and often disrupts your everyday life. People with brittle diabetes have severe swings in glucose (sugar) levels. The swings can cause frequent episodes of low blood sugar (hypoglycemia) and/or high blood sugar (hyperglycemia). These episodes may result in frequent hospitalizations. Brittle diabetes mainly affects people with Type 1 diabetes. But it can affect those with insulin-dependent Type 2 diabetes as well.",
+    "link": "https://my.clevelandclinic.org/health/diseases/21499-brittle-diabetes"
+}
+
+]
