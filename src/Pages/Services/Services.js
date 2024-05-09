@@ -66,7 +66,7 @@ const Services = () => {
             <div className="column">
               <div className="f-group">
                 <label>Number of Pregnancies</label>
-                <input required type="nmber" name="Number of Pregnancies" />
+                <input required type="number" name="Number of Pregnancies" />
               </div>
               <div className="f-group">
                 <label>Glucose Level</label>
@@ -101,7 +101,7 @@ const Services = () => {
               </div>
             </div>
 
-            <input type="submit" value="PREDICT" className="msg-btn" />
+            <MyButtonLg type="submit" className="msg-btn">PREDICT</MyButtonLg>
           </form>
         </div>
 
