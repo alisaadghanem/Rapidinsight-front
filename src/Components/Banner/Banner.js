@@ -10,9 +10,14 @@ import {
   OverlayBg4,
   OverlayBg7,
 } from "../OverlayBg/OverlayBg";
+import { useTranslation } from "react-i18next";
+
+
 
 const Banner = ({ page }) => {
   const { pathname } = useLocation();
+  const { t } = useTranslation();
+
 
   return (
     <div className="banner position-relative">
@@ -25,7 +30,7 @@ const Banner = ({ page }) => {
             style={{ gap: "2px" }}
           >
             <AiOutlineHome size={"1.4rem"} />
-            home
+            {t("home")}
           </NavLink>
           /<NavLink to={pathname}>{pathname.split("/")[1]}</NavLink>
         </div>

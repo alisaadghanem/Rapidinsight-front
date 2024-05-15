@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCz_SKNVJyG2lcwkhJprsC8kUpnkv4gPIY",
-  authDomain: "medirtro.firebaseapp.com",
-  projectId: "medirtro",
-  storageBucket: "medirtro.appspot.com",
-  messagingSenderId: "225023444715",
-  appId: "1:225023444715:web:fbb49dd9cedf1fff4d20ae",
+  apiKey: "AIzaSyCT0A9sRaQ5TQM6qRBIx30IRgu3yx4CQE4",
+  authDomain: "rapid-insight-app.firebaseapp.com",
+  projectId: "rapid-insight-app",
+  storageBucket: "rapid-insight-app.appspot.com",
+  messagingSenderId: "627283403903",
+  appId: "1:627283403903:web:2effcd53bce61098350b4a",
 };
 
 // Initialize Firebase

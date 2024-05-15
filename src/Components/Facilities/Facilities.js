@@ -35,14 +35,18 @@ import treat1 from "../../assets/symp/treat1.png";
 import treat2 from "../../assets/symp/treat2.png";
 import treat3 from "../../assets/symp/treat3.png";
 import bannerImage from "../../assets/symp/test1.png";
+import { useTranslation } from "react-i18next";
+import i18n from "i18next";
 
 const Facilities = () => {
-  const [facilities] = UseFacilities();
+  const { t } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const handleSlideChange = (index) => {
     setCurrentSlide(index);
   };
+
+  const isRtl = i18n.language === "ar";
 
   const symptomsImages = [
     symptom1,
@@ -59,28 +63,93 @@ const Facilities = () => {
   const prevImages = [prev1, prev2, prev3, prev4, prev7, prev6];
   const treatImages = [treat1, treat2, treat3];
 
-  const imageTexts = [
-    "Helathy Food",
-    "Sleep Well",
-    "Exercises",
-    "Stay Hydrated",
-    "Avoid Alcohol & Cigrattes",
-    "Maintain A Healthy Weight",
+  const facilities = [
+    {
+      facilities: t("Type 1"),
+      thumb: t("Type 1p"),
+      link: "https://my.clevelandclinic.org/health/diseases/21500-type-1-diabetes",
+    },
+    {
+      facilities: t("Type 2"),
+      thumb: t("Type 2p"),
+      link: "https://my.clevelandclinic.org/health/diseases/21501-type-2-diabetes",
+    },
+    {
+      facilities: t("Pre-diabetes"),
+      thumb: t("Pre-diabetes p"),
+      link: "https://my.clevelandclinic.org/health/diseases/21498-prediabetes",
+    },
+    {
+      facilities: t("Gestational diabetes"),
+      thumb: t("Gestational diabetes p"),
+      link: "https://my.clevelandclinic.org/health/diseases/9012-gestational-diabetes",
+    },
+    {
+      facilities: t("Type 3c diabetes"),
+      thumb: t("Type 3c diabetes p"),
+      link: "https://my.clevelandclinic.org/health/diseases/24953-type-3c-diabetes",
+    },
+    {
+      facilities: t("Latent autoimmune diabetes in adults"),
+      thumb: t("Latent autoimmune diabetes in adults p"),
+      link: "https://my.clevelandclinic.org/health/diseases/7104-diabetes",
+    },
+    {
+      facilities: t("Maturity-onset diabetes of the young"),
+      thumb: t("Maturity-onset diabetes of the young p"),
+      link: "https://my.clevelandclinic.org/health/diseases/7104-diabetes",
+    },
+    {
+      facilities: t("Neonatal diabetes"),
+      thumb: t("Neonatal diabetes p"),
+      link: "https://my.clevelandclinic.org/health/diseases/7104-diabetes",
+    },
+    {
+      facilities: t("Brittle diabetes"),
+      thumb: t("Brittle diabetes p"),
+      link: "https://my.clevelandclinic.org/health/diseases/21499-brittle-diabetes",
+    },
   ];
-  const imageTextsTreat = ["Sugar Control", "Medicines", "Insulin Therapy"];
+
+  const symptext = [
+    t("Frequent Urination"),
+    t("Always Thirsty"),
+    t("Tingling"),
+    t("Always Hungary"),
+    t("Sudden Weight Drop/Gain"),
+    t("Dizziness"),
+    t("Wounds Won't Heal"),
+    t("Blurred Vision"),
+    t("Irritability"),
+  ];
+
+  const imageTexts = [
+    t("Helathy Food"),
+    t("Sleep Well"),
+    t("Exercises"),
+    t("Stay Hydrated"),
+    t("Avoid Alcohol & Cigrattes"),
+    t("Maintain A Healthy Weight"),
+  ];
+
+  const imageTextsTreat = [
+    t("Sugar Control"),
+    t("Medicines"),
+    t("Insulin Therapy"),
+  ];
 
   return (
     <div className="facility position-relative">
       <div className="container">
         {/* "Learn More" title */}
         <SectionTitle style={{ textAlign: "center" }}>
-          <h6>Learn More</h6>
+          <h6>{t("Learn More")}</h6>
         </SectionTitle>
 
         {/* Symptoms Section */}
         <div>
           <SectionTitle style={{ textAlign: "center" }}>
-            <h2>Diabetes Symptoms</h2>
+            <h2>{t("ds")}</h2>
           </SectionTitle>
           <div className="symptoms-grid">
             {[0, 1, 2].map((row) => (
@@ -91,6 +160,7 @@ const Facilities = () => {
                       src={symptomsImages[row * 3 + col]}
                       alt={`Symptom ${row * 3 + col + 1}`}
                     />
+                    <p className="prev-p">{symptext[row * 3 + col]}</p>
                   </div>
                 ))}
               </div>
@@ -100,8 +170,8 @@ const Facilities = () => {
 
         {/* treat Section */}
         <div>
-          <SectionTitle style={{ textAlign: "center" }}>
-            <h2>Diabetes Treatment</h2>
+          <SectionTitle style={{ textAlign: "center", paddingTop: "50px" }}>
+            <h2>{t("dt")}</h2>
           </SectionTitle>
           <div className="symptoms-grid">
             {[0].map((row) => (
@@ -112,7 +182,7 @@ const Facilities = () => {
                       src={treatImages[row * 3 + col]}
                       alt={`prev ${row * 3 + col + 1}`}
                     />
-                    <p className="prev-p">{imageTextsTreat[row * 3 + col]}</p>
+                    <p className="prev-p">{imageTexts[row * 3 + col]}</p>
                   </div>
                 ))}
               </div>
@@ -123,7 +193,7 @@ const Facilities = () => {
         {/* prev Section */}
         <div>
           <SectionTitle style={{ textAlign: "center", paddingTop: "50px" }}>
-            <h2>Diabetes Prevention</h2>
+            <h2>{t("dp")}</h2>
           </SectionTitle>
           <div className="symptoms-grid">
             {[0, 1].map((row) => (
@@ -144,7 +214,7 @@ const Facilities = () => {
 
         <div>
           <SectionTitle style={{ textAlign: "center", paddingTop: "50px" }}>
-            <h2>How To Check Sugar Level</h2>
+            <h2>{t("sl")}</h2>
           </SectionTitle>
           <div className="banner-photo">
             <img src={bannerImage} alt="Banner" />
@@ -152,9 +222,9 @@ const Facilities = () => {
         </div>
 
         {/* Diabetes Types Section */}
-        <div >
+        <div>
           <SectionTitle style={{ textAlign: "center" }}>
-            <h2>Diabetes Types</h2>
+            <h2>{t("dtypes")}</h2>
           </SectionTitle>
         </div>
 
@@ -176,19 +246,16 @@ const Facilities = () => {
             selectedItem={currentSlide}
             onChange={handleSlideChange}
           >
-            {facilities.map((facility, id) => {
+            {facilities.map((facility, index) => {
               const { facilities, thumb, link } = facility;
-              console.log("Link:", link);
-
+              // console.log("Facility:", facilities, "Thumb:", thumb);
               return (
-                <div key={id} className="facility-card bg-light">
-                  <h1>{facilities}</h1>
-
-                  <p>{thumb}</p>
-
-                  <Link to={link} target="_blank" rel="noopener noreferrer">
+                <div key={index} className="facility-card bg-light">
+                  <h1 className={isRtl ? "rtl" : ""}>{facilities}</h1>
+                  <p className={isRtl ? "rtl" : ""}>{thumb}</p>
+                  <a href={link} target="_blank" rel="noopener noreferrer">
                     <MyButtonLg
-                      className={"hero-btn"}
+                      className={`hero-btn ${isRtl ? "rtl" : ""}`}
                       style={{
                         width: "150px",
                         padding: "12px 0",
@@ -196,9 +263,9 @@ const Facilities = () => {
                         textDecoration: "none",
                       }}
                     >
-                      Read More
+                      {t("read")}
                     </MyButtonLg>
-                  </Link>
+                  </a>
                 </div>
               );
             })}

@@ -3,35 +3,36 @@ import "swiper/css/bundle";
 import "swiper/css";
 import "swiper/css/free-mode";
 import SectionTitle from "../SectionTitle/SectionTitle";
-import { UseServices } from "../../hooks";
 import { MyButtonLg } from "../MyButtons/MyButtons";
 import { useNavigate } from "react-router-dom";
 import "./ServiceSlide.css";
 import { OverlayBg2, OverlayBg3, OverlayBg7 } from "../../Components/OverlayBg/OverlayBg";
+import { useTranslation } from "react-i18next";
+
 
 const ServiceSlide = () => {
-  const [services] = UseServices();
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <div className="WorkProcess position-relative">
     <div className="container">
       <SectionTitle style={{ textAlign: "center" }}>
-        <h6>Services</h6>
-        <h2>Let's See What We Have </h2>
+        <h6>{t("service")}</h6>
+        <h2>{t("Servicest")} </h2>
       </SectionTitle>
       <div className="WorkProcess-cards">
         <div className="WorkProcess-card shadow-lg bg-light">
           <div>
-            <h3>Heart Disease Prediction</h3>
-            <h5>COMING SOON</h5>
+            <h3>{t("heartdisease")}</h3>
+            <h5 style={{padding: "12px"}}>{t("coomingsoon")}</h5>
           </div>
 
         </div>
         <div className="WorkProcess-card active shadow-lg bg-light">
           <div>
-            <h1>Diabetes Disease Predection</h1>
-            <h5>
-              Available Now
+            <h1>{t("diabetesdisease")}</h1>
+            <h5  style={{padding: "12px"}}>
+            {t("availablenow")}
             </h5>
             <MyButtonLg
             action={() => navigate("/service")}
@@ -42,15 +43,15 @@ const ServiceSlide = () => {
               background: "#1f2278",
             }}
           >
-            Try it
+            {t("Try it")}
           </MyButtonLg>
           </div>
 
         </div>
         <div className="WorkProcess-card shadow-lg bg-light">
           <div>
-            <h3>Cancer Disease Prediction</h3>
-            <h5>COMING SOON</h5>
+            <h3>{t("cancerdisease")}</h3>
+            <h5 style={{padding: "12px"}}>{t("coomingsoon")}</h5>
           </div>
 
         </div>

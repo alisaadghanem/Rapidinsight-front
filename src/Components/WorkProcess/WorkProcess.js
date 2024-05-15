@@ -4,48 +4,46 @@ import { OverlayBg2, OverlayBg3, OverlayBg7 } from "../OverlayBg/OverlayBg";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import "./WorkProcess.css";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 
 const WorkProcess = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <div className="WorkProcess position-relative">
       <div className="container">
         <SectionTitle style={{ textAlign: "center" }}>
-          <h6>Working Process</h6>
-          <h2>How we works? </h2>
+          <h6>{t("wp")}</h6>
+          <h2>{t("hw")}</h2>
         </SectionTitle>
         <div className="WorkProcess-cards">
           <div className="WorkProcess-card shadow-lg bg-light">
-            <h1>01</h1>
+            <h1>{t("1")}</h1>
             <div>
-              <h5>Registration</h5>
+              <h5>{t("reg")}</h5>
               <p>
-              The registration process involves providing your personal information and creating login credentials to access the platform or service.    
-              <br />
-              during registration, users may be required to verify their email address or phone number to enhance security. 
+                {t("regp")} <br />
+                {t("regp1")}
               </p>
             </div>
-            
           </div>
           <div className="WorkProcess-card shadow-lg bg-light">
-            <h1>02</h1>
+            <h1>{t("2")}</h1>
             <div>
-              <h5>Predection Process</h5>
+              <h5>{t("pp")}</h5>
               <p>
-              the prediction process involves inputting patient health data (e.g., glucose levels, BMI, Blood Pressure) into the SVM algorithm, which then classifies the likelihood of diabetes based on learned patterns from training data.             
-               </p>
-            </div>
-            
-          </div>
-          <div className="WorkProcess-card shadow-lg bg-light">
-            <h1>03</h1>
-            <div>
-              <h5>Results</h5>
-              <p>
-              The results typically include a prediction of whether the individual is at risk of diabetes or not, These results can inform healthcare professionals and individuals about potential preventive measures or necessary interventions.
+              {t("pp1")}
               </p>
             </div>
-            
+          </div>
+          <div className="WorkProcess-card shadow-lg bg-light">
+            <h1>{t("3")}</h1>
+            <div>
+              <h5>{t("results")}</h5>
+              <p>
+              {t("resultsp")}
+              </p>
+            </div>
           </div>
         </div>
       </div>

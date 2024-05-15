@@ -3,28 +3,19 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "../Components/Loading/Loading";
 import auth from "../firebaseConfig";
 import { Navigate, useLocation } from "react-router-dom";
-import { UseAdmin } from "../hooks";
 import { signOut } from "firebase/auth";
 
-const RequieAdmin = ({ children }) => {
-  let [user, loading] = useAuthState(auth);
-  const [isAdmin, isLoading] = UseAdmin(user);
+const RequireAuth = ({ children }) => {
+  const [user, loading] = useAuthState(auth);
+  const location = useLocation();
 
-  let location = useLocation();
-
-  if (loading || isLoading) {
-    return (
-      <>
-        <Loading />
-      </>
-    );
+  if (loading) {
+    return <Loading />;
   }
 
-  if (isAdmin === false || !user) {
-    // Redirect them to the /login page, but save the current location they were
-    // trying to go to when they were redirected. This allows us to send them
-    // along to that page after they login, which is a nicer user experience
-    // than dropping them off on the home page.
+  if (!user) {
+    // If user is not authenticated, redirect to the login page
+    // Save the current location to redirect the user back after successful login
     signOut(auth);
     localStorage.removeItem("accessToken");
     return <Navigate to="/login" state={{ from: location }} replace />;
@@ -33,4 +24,4 @@ const RequieAdmin = ({ children }) => {
   return children;
 };
 
-export default RequieAdmin;
+export default RequireAuth;

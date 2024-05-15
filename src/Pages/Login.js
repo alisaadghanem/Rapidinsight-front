@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   useAuthState,
   useSignInWithEmailAndPassword,
@@ -13,11 +13,11 @@ import auth from "../firebaseConfig";
 import { UseToken } from "../hooks";
 
 const Login = () => {
-  let navigate = useNavigate();
-  let location = useLocation();
-  let [VerifiedUser, isLoading] = useAuthState(auth);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const [VerifiedUser, isLoading] = useAuthState(auth);
 
-  let from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/";
 
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
@@ -30,19 +30,21 @@ const Login = () => {
     await signInWithEmailAndPassword(email, password);
     e.target.reset();
   };
+
+  useEffect(() => {
+    if (token) {
+      navigate(from, { replace: true });
+    }
+  }, [token, navigate, from]);
+
   if (isLoading || loading) {
     return <Loading />;
-  }
-  if (token) {
-    navigate(from, { replace: true });
   }
 
   return (
     <>
       <Header />
-      {loading && <Loading />}
       <div style={{ marginTop: "120px" }}>
-        {" "}
         <AuthenticationForm action={handleLogin} error={error} />
       </div>
       <Footer />

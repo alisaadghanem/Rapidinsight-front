@@ -33,6 +33,11 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Adjust shadow values as needed */
   border-radius: 20px;
   width: 1150px;
+  direction: ltr;
+
+}
+.rtl{
+direction: rtl;
 }
 .facility-card {
   width: 1150px;

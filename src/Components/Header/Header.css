@@ -10,6 +10,10 @@
   z-index: 9999999999 !important;
 }
 
+.navbar-collapse {
+  flex-grow: 0 !important;
+}
+
 .primary-header a {
   color: var(--primary-text);
   font-size: 15px;

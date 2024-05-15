@@ -2,8 +2,12 @@ import { MyButtonLg } from "../MyButtons/MyButtons";
 import React from "react";
 import logo from "../../assets/logo/logo.png";
 import "./Footer.css";
+import { useTranslation } from "react-i18next";
+
 
 const Footer = () => {
+  const { t } = useTranslation();
+
   return (
     <footer className="footer ">
       <div className="container">
@@ -14,28 +18,27 @@ const Footer = () => {
                 <img src={logo} alt="meditro" className="f-logo" />
               </div>
               <p className="f-des">
-                Lorem ipsum is dolor sit amet, csectetur adipiscing elit, dolore
-                smod tempor incididunt ut labore et.
+              {t("footer p")}
               </p>
-              <span className="pb-2 d-inline-block">Contact Us</span>
-              <h3 className="">+20 1017161192</h3>
+              <span className="pb-2 d-inline-block">{t("Contact Us")}</span>
+              <h3 className="">{t("number")}</h3>
             </div>
           </div>
           <div className="col-xl-4 col-lg-6 col-md-12 col-12 d-flex justify-content-center">
             <ul className="f-links list-unstyled">
-              <div className="f-title">Socail Media</div>
-              <li>Facebook</li>
-              <li>linkedin</li>
-              <li>Instagram</li>
-              <li>twitter</li>
+              <div className="f-title">{t("Socail Media")}</div>
+              <li>{t("Facebook")}</li>
+              <li>{t("linkedin")}</li>
+              <li>{t("Instagram")}</li>
+              <li>{t("twitter")}</li>
             </ul>
           </div>
           <div className="col-xl-4 col-lg-6 col-md-12 col-12">
-            <div className="f-title">subscribe now</div>
+            <div className="f-title">{t("subscribe now")}</div>
             <form className="subscribe-form">
               <input
                 type="email"
-                placeholder="Email Address"
+                placeholder={t("Email Address")}
                 className="form-control shadow-lg p-2"
               />{" "}
               <br />
@@ -47,7 +50,7 @@ const Footer = () => {
                   padding: "10px 0",
                 }}
               >
-                subscribe now
+                {t("subscribe")}
               </MyButtonLg>
             </form>
           </div>

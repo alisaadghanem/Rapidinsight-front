@@ -4,12 +4,14 @@ import React from "react";
 import logo from "../../assets/logo/logo.png";
 import SocialLogin from "../../assets/SocialLogin/SocialLogin";
 import "./AuthenticationForm.css";
+import { useTranslation } from "react-i18next";
 
 const AuthenticationForm = ({ action, error }) => {
+  const { t } = useTranslation();
   const { pathname } = useLocation();
 
   return (
-    <div className="AuthenticationForm shadow-lg bg-light my-5" >
+    <div className="AuthenticationForm shadow-lg bg-light my-5">
       <figure className="AuthenticationForm-logo">
         <img src={logo} alt="logo" className="img-fluid" />
       </figure>
@@ -21,7 +23,7 @@ const AuthenticationForm = ({ action, error }) => {
               required
               type="text"
               name="name"
-              placeholder="Name"
+              placeholder={t("name")}
               className=""
             />
           </div>
@@ -32,7 +34,7 @@ const AuthenticationForm = ({ action, error }) => {
             required
             type="email"
             name="email"
-            placeholder="email"
+            placeholder={t("email")}
             className=""
           />
         </div>
@@ -42,18 +44,18 @@ const AuthenticationForm = ({ action, error }) => {
             required
             type="password"
             name="password"
-            placeholder="password"
+            placeholder={t("Password")}
             className=""
           />
         </div>
         {pathname === "/signup" && (
           <div className="text-end">
-            <Link to={"/login"}>Already have an account?</Link>
+            <Link to={"/login"}>{t("Already have an account")}</Link>
           </div>
         )}
         {pathname === "/login" && (
           <div className="text-end">
-            <Link to={"/login"}>forgot password?</Link>
+            <Link to={"/login"}>{t("Forgot password")}</Link>
           </div>
         )}
         {error && <small className="text-danger">{error.message}</small>}
@@ -73,7 +75,7 @@ const AuthenticationForm = ({ action, error }) => {
       <SocialLogin />
       <div className="text-capitalize my-3 text-center">
         {pathname === "/login" && (
-          <Link to={"/signup"}>don't have an account? Register</Link>
+          <Link to={"/signup"}>{t("Don't have an account? Register")}</Link>
         )}
       </div>
     </div>

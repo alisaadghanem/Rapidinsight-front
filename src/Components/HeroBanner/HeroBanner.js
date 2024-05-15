@@ -10,9 +10,13 @@ import React from "react";
 import Header from "../Header/Header";
 import heroThumb from "../../assets/hero-img/thumb.png";
 import "./HeroBanner.css";
+import { useTranslation } from "react-i18next";
+
 
 const HeroBanner = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation();
+
 
   return (
     <div className="hero-banner position-relative">
@@ -24,8 +28,8 @@ const HeroBanner = () => {
           {/* left side */}
           <div className="col-xl-7 col-lg-7 col-md-6 col-sm-6 col-12">
             <div className="hero-banner-content-left">
-              <h5>We Provide A Prediction For your Medical Analysis</h5>
-              <h1>Get It Fast And Keep Your Health Safe.</h1>
+              <h5>{t("stitle")}</h5>
+              <h1>{t("btitle")}</h1>
               <MyButtonLg
                 action={() => navigate("/about")}
                 className={"hero-btn"}
@@ -35,7 +39,7 @@ const HeroBanner = () => {
                   background: "#f17732",
                 }}
               >
-                read more
+                {t("read")}
               </MyButtonLg>
             </div>
           </div>

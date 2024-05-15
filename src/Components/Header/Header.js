@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { signOut } from "firebase/auth";
-
+import LanguageSwitcher from "../MyButtons/LanguageSwitcher";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -12,11 +12,13 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import logo from "../../assets/logo/logo.png";
 import auth from "../../firebaseConfig";
 import "./Header.css";
+import { useTranslation } from "react-i18next";
 
 function Header() {
   const [sticky, setSticky] = useState(false);
   const navigate = useNavigate();
   const [user] = useAuthState(auth);
+  const { t } = useTranslation();
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -41,36 +43,35 @@ function Header() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto align-items-center" style={{ gap: "20px" }}>
               <NavLink className={"text-uppercase text-decoration-none"} to="/">
-                Home
+                {t("home")}
               </NavLink>
               <NavLink
                 className={"text-uppercase text-decoration-none"}
                 to="/about"
               >
-                about
+                {t("about")}
               </NavLink>
               <NavLink
                 className={"text-uppercase text-decoration-none"}
                 to="/service"
               >
-                service
+                {t("service")}
               </NavLink>
               <NavLink
                 className={"text-uppercase text-decoration-none"}
                 to="/blog"
               >
-                blog
+                {t("blog")}
               </NavLink>
               <NavLink
                 className={"text-uppercase text-decoration-none"}
                 to="/contact"
               >
-                contact
+                {t("contact")}
               </NavLink>
-
               {user ? (
                 <NavDropdown title={user?.displayName} id="basic-nav-dropdown">
-                  <NavLink to={"/dashboard/profile"}>profile</NavLink>
+                  <NavLink to={"/dashboard/profile"}>{t("profile")}</NavLink>
                   <MyButtonLg
                     action={() => {
                       signOut(auth);
@@ -84,7 +85,7 @@ function Header() {
                     }}
                   >
                     {" "}
-                    signOut
+                    {t("signout")}
                   </MyButtonLg>
                 </NavDropdown>
               ) : (
@@ -99,10 +100,11 @@ function Header() {
                   }}
                 >
                   {" "}
-                  login
+                  {t("login")}
                 </MyButtonLg>
-              )}
-            </Nav>
+              )}{" "}
+              <LanguageSwitcher/>
+            </Nav>  
           </Navbar.Collapse>
         </Container>
       </Navbar>

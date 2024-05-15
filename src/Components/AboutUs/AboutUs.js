@@ -17,8 +17,11 @@ import aboutThumb4 from "../../assets/about-img/about4.png";
 import Features from "../Features/Features";
 import SectionTitle from "../SectionTitle/SectionTitle";
 import "./AboutUs.css";
+import { useTranslation } from "react-i18next";
+
 
 const AboutUs = () => {
+  const { t } = useTranslation();
   return (
     <div className="aboutUs position-relative">
       <div className="container">
@@ -51,13 +54,12 @@ const AboutUs = () => {
           {/* right side */}
           <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12  about-right">
             <div className="aboutUs-content">
-              <SectionTitle style={{ textAlign: "left" }}>
-                <h6>about us</h6>
-                <h2>Fast Predection, Faster Prevention</h2>
+              <SectionTitle>
+                <h6>{t("about")}</h6>
+                <h2>{t("aboutt1")}</h2>
               </SectionTitle>
               <p>
-                We provide the special tips and advice’s of heath care treatment
-                and high level of best technology involve in the our website.
+              {t("aboutt2")}
               </p>
               <Features />
             </div>

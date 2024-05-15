@@ -1,0 +1,12 @@
+/* App.css */
+
+/* Right-to-left direction for Arabic language */
+.rtl {
+    direction: rtl;
+  }
+  
+  /* Left-to-right direction for all other languages */
+  .ltr {
+    direction: ltr;
+  }
+  
