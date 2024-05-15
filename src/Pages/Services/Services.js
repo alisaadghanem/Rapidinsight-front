@@ -83,10 +83,10 @@ const Services = () => {
 
     // Show appropriate modal based on prediction result
     if (prediction === 0) {
-      setNotificationMessage("You don't have diabetes");
+      setNotificationMessage(t("You don't have diabetes"));
       setShowNotification(true);
     } else if (prediction === 1) {
-      setNotificationMessage("You have diabetes");
+      setNotificationMessage(t("You have diabetes"));
       setShowNotification(true);
     }
   };
@@ -208,7 +208,7 @@ const Services = () => {
                     {t("Number of Pregnancies")}
                   </label>
                   <p htmlFor="pregnancies" className="text-gray-500 text-xs">
-                    Minimum: 0, Maximum: 17
+                    {t("Minimum: 0, Maximum: 17")}
                   </p>
                   <input
                     required
@@ -221,7 +221,7 @@ const Services = () => {
                 <div className="f-group">
                   <label htmlFor="glucose">{t("Glucose Level")}</label>
                   <p htmlFor="glucose" className="text-gray-500 text-xs">
-                    Minimum: 0, Maximum: 199
+                    {t("Minimum: 0, Maximum: 199")}
                   </p>
                   <input
                     required
@@ -234,7 +234,7 @@ const Services = () => {
                 <div className="f-group">
                   <label htmlFor="bloodPressure">{t("Blood Pressure")}</label>
                   <p htmlFor="bloodPressure" className="text-gray-500 text-xs">
-                    Minimum: 0, Maximum: 122
+                    {t("Minimum: 0, Maximum: 122")}
                   </p>
                   <input
                     required
@@ -247,7 +247,7 @@ const Services = () => {
                 <div className="f-group">
                   <label htmlFor="skinThickness">{t("Skin Thickness")}</label>
                   <p htmlFor="skinThickness" className="text-gray-500 text-xs">
-                    Minimum: 0, Maximum: 99
+                    {t("Minimum: 0, Maximum: 99")}
                   </p>
                   <input
                     required
@@ -263,7 +263,7 @@ const Services = () => {
                 <div className="f-group">
                   <label htmlFor="insulin">{t("Insulin Level")}</label>
                   <p htmlFor="insulin" className="text-gray-500 text-xs">
-                    Minimum: 0, Maximum: 846
+                    {t("Minimum: 0, Maximum: 846")}
                   </p>
                   <input
                     required
@@ -276,7 +276,7 @@ const Services = () => {
                 <div className="f-group">
                   <label htmlFor="bmi">{t("BMI (Body Mass Index)")}</label>
                   <p htmlFor="bmi" className="text-gray-500 text-xs">
-                    Minimum: 0.0, Maximum: 67.1
+                    {t("Minimum: 0.0, Maximum: 67.1")}
                   </p>
                   <input
                     required
@@ -294,7 +294,7 @@ const Services = () => {
                     htmlFor="diabetesPedigreeFunction"
                     className="text-gray-500 text-xs"
                   >
-                    Minimum: 0.078, Maximum: 2.42
+                    {t("Minimum: 0.078, Maximum: 2.42")}
                   </p>
                   <input
                     required
@@ -307,7 +307,7 @@ const Services = () => {
                 <div className="f-group">
                   <label htmlFor="age">{t("Age")}</label>
                   <p htmlFor="age" className="text-gray-500 text-xs">
-                    Minimum: 0, Maximum: 99
+                    {t("Minimum: 0, Maximum: 99")}
                   </p>
                   <input
                     required

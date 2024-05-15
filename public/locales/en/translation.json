@@ -119,6 +119,17 @@
     "Forgot password": "Forgot password?",
     "Don't have an account? Register": "Don't have an account? Register",
     "or": "or",
-    "footer p": "your ultimate companion in diabetes management, offering predictive analytics to anticipate potential diabetic conditions. With advanced algorithms and user-friendly interfaces, empowers users to take proactive measures for better health outcomes."
+    "footer p": "your ultimate companion in diabetes management, offering predictive analytics to anticipate potential diabetic conditions. With advanced algorithms and user-friendly interfaces, empowers users to take proactive measures for better health outcomes.",
+    "Close": "Close",
+    "Minimum: 0, Maximum: 17": "Minimum: 0, Maximum: 17",
+    "Minimum: 0, Maximum: 199": "Minimum: 0, Maximum: 199",
+    "Minimum: 0, Maximum: 122": "Minimum: 0, Maximum: 122",
+    "Minimum: 0, Maximum: 99": "Minimum: 0, Maximum: 99",
+    "Minimum: 0, Maximum: 846": "Minimum: 0, Maximum: 846",
+    "Minimum: 0.0, Maximum: 67.1": "Minimum: 0.0, Maximum: 67.1",
+    "Minimum: 0.078, Maximum: 2.42": "Minimum: 0.078, Maximum: 2.42",
+    "You don't have diabetes": "You don't have diabetes",
+    "You have diabetes": "You have diabetes",
+    "The Prediction Is": "The Prediction Is"
   }
   

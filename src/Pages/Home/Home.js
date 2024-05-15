@@ -26,10 +26,6 @@ const Home = () => {
         {" "}
         <Facilities />
       </section>
-      <section className="section">
-        {" "}
-        {/* <OurDoctors /> */}
-      </section>
       <Footer />
     </>
   );

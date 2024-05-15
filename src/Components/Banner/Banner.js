@@ -2,7 +2,7 @@ import React from "react";
 import "./Banner.css";
 import { AiOutlineHome } from "react-icons/ai";
 import { useLocation } from "react-router-dom";
-import { NavLink, useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import {
   OverlayBg1,
   OverlayBg2,
@@ -12,12 +12,22 @@ import {
 } from "../OverlayBg/OverlayBg";
 import { useTranslation } from "react-i18next";
 
-
-
 const Banner = ({ page }) => {
   const { pathname } = useLocation();
   const { t } = useTranslation();
 
+  // Function to get the translated path name
+  const getTranslatedPathname = (path) => {
+    // Check if the path is '/'
+    if (path === "/") {
+      return t("home");
+    } else {
+      // Split the path and get the first part (excluding the leading '/')
+      const pathParts = path.split("/").filter((part) => part !== "");
+      const translatedPath = t(pathParts[0]);
+      return translatedPath.charAt(0).toUpperCase() + translatedPath.slice(1);
+    }
+  };
 
   return (
     <div className="banner position-relative">
@@ -32,7 +42,7 @@ const Banner = ({ page }) => {
             <AiOutlineHome size={"1.4rem"} />
             {t("home")}
           </NavLink>
-          /<NavLink to={pathname}>{pathname.split("/")[1]}</NavLink>
+          /<NavLink to={pathname}>{getTranslatedPathname(pathname)}</NavLink>
         </div>
       </div>
       {/* for overlay background */}
