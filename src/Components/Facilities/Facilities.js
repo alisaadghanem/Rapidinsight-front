@@ -182,7 +182,7 @@ const Facilities = () => {
                       src={treatImages[row * 3 + col]}
                       alt={`prev ${row * 3 + col + 1}`}
                     />
-                    <p className="prev-p">{imageTexts[row * 3 + col]}</p>
+                    <p className="prev-p">{imageTextsTreat[row * 3 + col]}</p>
                   </div>
                 ))}
               </div>
