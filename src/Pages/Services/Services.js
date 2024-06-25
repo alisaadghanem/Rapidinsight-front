@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import RequireAdmin from "../RequieAdmin";
 import Banner from "../../Components/Banner/Banner";
 import Footer from "../../Components/Footer/Footer";
@@ -13,81 +13,92 @@ import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 import "./Services.css";
 import { useTranslation } from "react-i18next";
 import Notification from "./Notification";
+import YesNoButton from "./YesNoButton"; // Import the new component
 
 const Services = () => {
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
   const { t } = useTranslation();
-  const [prediction, setPrediction] = useState(null);
   const [formData, setFormData] = useState({
-    pregnancies: "",
-    glucose: "",
-    bloodPressure: "",
-    skinThickness: "",
-    insulin: "",
-    bmi: "",
-    diabetesPedigreeFunction: "",
+    polyuria: "",
+    polydipsia: "",
+    suddenWeightLoss: "",
+    weakness: "",
+    polyphagia: "",
+    genitalThrush: "",
+    visualBlurring: "",
+    itching: "",
     age: "",
+    gender: "",
+    sugarLevelType: "", // New field for the type of sugar level
+    sugarLevelValue: "", // New field for the sugar level value
   });
-
-  useEffect(() => {
-    const validateField = (fieldId, minValue, maxValue) => {
-      const inputElement = document.getElementById(fieldId);
-
-      if (inputElement) {
-        const messageElement = inputElement.previousElementSibling;
-
-        inputElement.addEventListener("input", function () {
-          const value = parseFloat(this.value);
-
-          if (isNaN(value) || value < minValue || value > maxValue) {
-            this.style.borderColor = "red";
-            this.style.color = "red";
-            if (messageElement) {
-              messageElement.style.color = "red";
-            }
-          } else {
-            this.style.borderColor = "gray";
-            this.style.color = "black";
-            if (messageElement) {
-              messageElement.style.color = "gray";
-            }
-          }
-        });
-      }
-    };
-
-    validateField("pregnancies", 0, 17);
-    validateField("glucose", 0, 199);
-    validateField("bloodPressure", 0, 122);
-    validateField("skinThickness", 0, 99);
-    validateField("insulin", 0, 846);
-    validateField("bmi", 0.0, 67.1);
-    validateField("diabetesPedigreeFunction", 0.078, 2.42);
-    validateField("age", 0, 99);
-  }, []);
+  const [prediction, setPrediction] = useState(null); // State for prediction
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const response = await fetch("http://127.0.0.1:5000/predict", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    let predictionData = {
+      age: formData.age,
+      gender: formData.gender === "male" ? 1 : 0,
+      polyuria: formData.polyuria === "yes" ? 1 : 0,
+      polydipsia: formData.polydipsia === "yes" ? 1 : 0,
+      "sudden weight loss": formData.suddenWeightLoss === "yes" ? 1 : 0,
+      weakness: formData.weakness === "yes" ? 1 : 0,
+      polyphagia: formData.polyphagia === "yes" ? 1 : 0,
+      "genital thrush": formData.genitalThrush === "yes" ? 1 : 0,
+      "visual blurring": formData.visualBlurring === "yes" ? 1 : 0,
+      itching: formData.itching === "yes" ? 1 : 0,
+      irritability: formData.irritability === "yes" ? 1 : 0,
+      "delayed healing": formData.delayedHealing === "yes" ? 1 : 0,
+      "partial paresis": formData.partialParesis === "yes" ? 1 : 0,
+      "muscle stiffness": formData.muscleStiffness === "yes" ? 1 : 0,
+      alopecia: formData.alopecia === "yes" ? 1 : 0,
+      obesity: formData.obesity === "yes" ? 1 : 0,
+      sugar_level: parseFloat(formData.sugarLevelValue), // Ensure sugar_level is numeric
+    };
 
-    const data = await response.json();
-    setPrediction(data.prediction);
+    // Check if the sugar level test is A1cTest and multiply sugar level by 10
+    if (formData.sugarLevelType === "A1cTest") {
+      predictionData.sugar_level *= 10;
+    }
 
-    // Show appropriate modal based on prediction result
-    if (prediction === 0) {
-      setNotificationMessage(t("You don't have diabetes"));
-      setShowNotification(true);
-    } else if (prediction === 1) {
-      setNotificationMessage(t("You have diabetes"));
-      setShowNotification(true);
+    // Determine which endpoint to call based on the sugar level test selected
+    let endpoint = "";
+    if (formData.sugarLevelType === "afterEating") {
+      endpoint = "/RBS";
+    } else if (formData.sugarLevelType === "fastingSugar") {
+      endpoint = "/FBS";
+    } else if (formData.sugarLevelType === "A1cTest") {
+      endpoint = "/HbA1c";
+    }
+
+    try {
+      const response = await fetch(`http://127.0.0.1:5000${endpoint}`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(predictionData),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setPrediction(data.prediction);
+
+      // Show appropriate modal based on prediction result
+      if (data.prediction === 0) {
+        setNotificationMessage(t("You don't have diabetes"));
+        setShowNotification(true);
+      } else if (data.prediction === 1) {
+        setNotificationMessage(t("You have diabetes"));
+        setShowNotification(true);
+      }
+    } catch (error) {
+      console.error("Error fetching data:", error);
     }
   };
 
@@ -95,70 +106,17 @@ const Services = () => {
     setShowNotification(false);
   };
 
-  const handleChange = (e) => {
+  const handleYesNoChange = (name, value) => {
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleInputChange = (e) => {
     const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
 
-    let minValue, maxValue;
-    switch (name) {
-      case "pregnancies":
-        minValue = 0;
-        maxValue = 17;
-        break;
-      case "glucose":
-        minValue = 0;
-        maxValue = 199;
-        break;
-      case "bloodPressure":
-        minValue = 0;
-        maxValue = 122;
-        break;
-      case "skinThickness":
-        minValue = 0;
-        maxValue = 99;
-        break;
-      case "insulin":
-        minValue = 0;
-        maxValue = 846;
-        break;
-      case "bmi":
-        minValue = 0.0;
-        maxValue = 67.1;
-        break;
-      case "diabetesPedigreeFunction":
-        minValue = 0.078;
-        maxValue = 2.42;
-        break;
-      case "age":
-        minValue = 0;
-        maxValue = 99;
-        break;
-      default:
-        minValue = 0;
-        maxValue = 999;
-    }
-
-    const inputElement = e.target;
-    const messageElement = inputElement.previousElementSibling;
-
-    const floatValue = parseFloat(value);
-    if (isNaN(floatValue) || floatValue < minValue || floatValue > maxValue) {
-      inputElement.style.borderColor = "red";
-      inputElement.style.color = "red";
-      if (messageElement) {
-        messageElement.style.color = "red";
-      }
-    } else {
-      inputElement.style.borderColor = "gray";
-      inputElement.style.color = "black";
-      if (messageElement) {
-        messageElement.style.color = "gray";
-      }
-    }
-
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  const handleSugarLevelTypeChange = (type) => {
+    setFormData({ ...formData, sugarLevelType: type });
   };
 
   return (
@@ -200,126 +158,208 @@ const Services = () => {
                 style={{ textAlign: "center", paddingTop: "100px" }}
               >
                 <h6>{t("diabetesdisease")}</h6>
-                <h2> {t("Get Your Fast Result Now")} </h2>
+                <h2>{t("Get Your Fast Result Now")}</h2>
               </SectionTitle>
-              <div className="column">
-                <div className="f-group">
-                  <label htmlFor="pregnancies">
-                    {t("Number of Pregnancies")}
-                  </label>
-                  <p htmlFor="pregnancies" className="text-gray-500 text-xs">
-                    {t("Minimum: 0, Maximum: 17")}
-                  </p>
-                  <input
-                    required
-                    type="number"
-                    id="pregnancies"
-                    name="pregnancies"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="f-group">
-                  <label htmlFor="glucose">{t("Glucose Level")}</label>
-                  <p htmlFor="glucose" className="text-gray-500 text-xs">
-                    {t("Minimum: 0, Maximum: 199")}
-                  </p>
-                  <input
-                    required
-                    type="number"
-                    id="glucose"
-                    name="glucose"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="f-group">
-                  <label htmlFor="bloodPressure">{t("Blood Pressure")}</label>
-                  <p htmlFor="bloodPressure" className="text-gray-500 text-xs">
-                    {t("Minimum: 0, Maximum: 122")}
-                  </p>
-                  <input
-                    required
-                    type="number"
-                    id="bloodPressure"
-                    name="bloodPressure"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="f-group">
-                  <label htmlFor="skinThickness">{t("Skin Thickness")}</label>
-                  <p htmlFor="skinThickness" className="text-gray-500 text-xs">
-                    {t("Minimum: 0, Maximum: 99")}
-                  </p>
-                  <input
-                    required
-                    type="number"
-                    id="skinThickness"
-                    name="skinThickness"
-                    onChange={handleChange}
-                  />
+              <div className="yes-no-rows">
+                <div className="row">
+                  <div className="yes-no-rows">
+                    <div className="row">
+                      <YesNoButton
+                        label={t("Frequent Urination")}
+                        name="polyuria"
+                        value={formData.polyuria}
+                        onChange={handleYesNoChange}
+                      />
+                      <YesNoButton
+                        label={t("Always Thirsty")}
+                        name="polydipsia"
+                        value={formData.polydipsia}
+                        onChange={handleYesNoChange}
+                      />
+                      <YesNoButton
+                        label={t("Sudden Weight Loss")}
+                        name="suddenWeightLoss"
+                        value={formData.suddenWeightLoss}
+                        onChange={handleYesNoChange}
+                      />
+                      <YesNoButton
+                        label={t("Weakness")}
+                        name="weakness"
+                        value={formData.weakness}
+                        onChange={handleYesNoChange}
+                      />
+                    </div>
+                    <div className="row">
+                      <YesNoButton
+                        label={t("Always Hungary")}
+                        name="polyphagia"
+                        value={formData.polyphagia}
+                        onChange={handleYesNoChange}
+                      />
+                      <YesNoButton
+                        label={t("Genital Thrush")}
+                        name="genitalThrush"
+                        value={formData.genitalThrush}
+                        onChange={handleYesNoChange}
+                      />
+                      <YesNoButton
+                        label={t("Blurred Vision")}
+                        name="visualBlurring"
+                        value={formData.visualBlurring}
+                        onChange={handleYesNoChange}
+                      />
+                      <YesNoButton
+                        label={t("Itching")}
+                        name="itching"
+                        value={formData.itching}
+                        onChange={handleYesNoChange}
+                      />
+                    </div>
+                    <div className="row">
+                      <YesNoButton
+                        label={t("Irritability")}
+                        name="irritability"
+                        value={formData.irritability}
+                        onChange={handleYesNoChange}
+                      />
+                      <YesNoButton
+                        label={t("Delayed Healing")}
+                        name="delayedHealing"
+                        value={formData.delayedHealing}
+                        onChange={handleYesNoChange}
+                      />
+                      <YesNoButton
+                        label={t("Partial Paresis")}
+                        name="partialParesis"
+                        value={formData.partialParesis}
+                        onChange={handleYesNoChange}
+                      />
+                      <YesNoButton
+                        label={t("Muscle Stiffness")}
+                        name="muscleStiffness"
+                        value={formData.muscleStiffness}
+                        onChange={handleYesNoChange}
+                      />
+                    </div>
+                    <div className="row">
+                      <YesNoButton
+                        label={t("Alopecia")}
+                        name="alopecia"
+                        value={formData.alopecia}
+                        onChange={handleYesNoChange}
+                      />
+                      <YesNoButton
+                        label={t("Obesity")}
+                        name="obesity"
+                        value={formData.obesity}
+                        onChange={handleYesNoChange}
+                      />
+                    </div>
+                  </div>
                 </div>
               </div>
-
-              <div className="column">
-                <div className="f-group">
-                  <label htmlFor="insulin">{t("Insulin Level")}</label>
-                  <p htmlFor="insulin" className="text-gray-500 text-xs">
-                    {t("Minimum: 0, Maximum: 846")}
-                  </p>
-                  <input
-                    required
-                    type="number"
-                    id="insulin"
-                    name="insulin"
-                    onChange={handleChange}
-                  />
+              <div className="row">
+                <div className="col-md-6">
+                  <div className="f-group" style={{ marginBottom: "50px" }}>
+                    <label
+                      htmlFor="age"
+                      style={{ display: "block", textAlign: "center" }}
+                    >
+                      {t("Age")}
+                    </label>
+                    <input
+                      required
+                      type="number"
+                      id="age"
+                      name="age"
+                      value={formData.age}
+                      onChange={handleInputChange}
+                      style={{ width: "100%" }}
+                    />
+                  </div>
                 </div>
-                <div className="f-group">
-                  <label htmlFor="bmi">{t("BMI (Body Mass Index)")}</label>
-                  <p htmlFor="bmi" className="text-gray-500 text-xs">
-                    {t("Minimum: 0.0, Maximum: 67.1")}
-                  </p>
-                  <input
-                    required
-                    type="number"
-                    id="bmi"
-                    name="bmi"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="f-group">
-                  <label htmlFor="diabetesPedigreeFunction">
-                    {t("Diabetes Pedigree Function")}
-                  </label>
-                  <p
-                    htmlFor="diabetesPedigreeFunction"
-                    className="text-gray-500 text-xs"
+                <div className="col-md-6">
+                  <div
+                    className="f-group"
+                    style={{ marginBottom: "50px", textAlign: "center" }}
                   >
-                    {t("Minimum: 0.078, Maximum: 2.42")}
-                  </p>
-                  <input
-                    required
-                    type="number"
-                    id="diabetesPedigreeFunction"
-                    name="diabetesPedigreeFunction"
-                    onChange={handleChange}
-                  />
-                </div>
-                <div className="f-group">
-                  <label htmlFor="age">{t("Age")}</label>
-                  <p htmlFor="age" className="text-gray-500 text-xs">
-                    {t("Minimum: 0, Maximum: 99")}
-                  </p>
-                  <input
-                    required
-                    type="number"
-                    id="age"
-                    name="age"
-                    onChange={handleChange}
-                  />
+                    <label htmlFor="gender" style={{ display: "block" }}>
+                      {t("Gender")}
+                    </label>
+                    <select
+                      id="gender"
+                      name="gender"
+                      value={formData.gender}
+                      onChange={handleInputChange}
+                      required
+                      style={{
+                        width: "100%",
+                        height: "46px",
+                        padding: "5px",
+                        borderRadius: "5px",
+                        border: "2px solid #565acf",
+                      }}
+                    >
+                      <option value="male">{t("Male")}</option>
+                      <option value="female">{t("Female")}</option>
+                    </select>
+                  </div>
                 </div>
               </div>
 
-              <MyButtonLg type="submit" className="msg-btn">
+              <div className="sugar-level-type">
+                <h2 className="h2">{t("Choose a Sugar Level Test")}</h2>
+                <div className="options">
+                  <div
+                    className={`option ${
+                      formData.sugarLevelType === "afterEating"
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() => handleSugarLevelTypeChange("afterEating")}
+                  >
+                    {t("After Eating Test")}
+                  </div>
+                  <div
+                    className={`option ${
+                      formData.sugarLevelType === "fastingSugar"
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() => handleSugarLevelTypeChange("fastingSugar")}
+                  >
+                    {t("Fasting Sugar Test")}
+                  </div>
+                  <div
+                    className={`option ${
+                      formData.sugarLevelType === "A1cTest" ? "selected" : ""
+                    }`}
+                    onClick={() => handleSugarLevelTypeChange("A1cTest")}
+                  >
+                    {t("A1c Test")}
+                  </div>
+                </div>
+              </div>
+              {formData.sugarLevelType && ( // Conditionally render input based on sugarLevelType
+                <div className="f-group">
+                  <label htmlFor="sugarLevelValue">
+                    {t("Sugar Level Value")}
+                  </label>
+                  <input
+                    required
+                    type="number"
+                    id="sugarLevelValue"
+                    name="sugarLevelValue"
+                    value={formData.sugarLevelValue}
+                    onChange={handleInputChange}
+                  />
+                </div>
+              )}
+              <MyButtonLg
+                type="submit"
+                className="msg-btn"
+                style={{ marginBottom: "100px" }}
+              >
                 {t("PREDICT")}
               </MyButtonLg>
             </form>
@@ -331,13 +371,11 @@ const Services = () => {
               />
             )}
           </div>
-
           {/* Overlay backgrounds */}
           <OverlayBg3 style={{ top: "20%", right: "5%" }} />
           <OverlayBg7 style={{ top: "15%", right: "50%" }} />
           <OverlayBg2 style={{ bottom: "0", left: "5%" }} />
         </div>
-
         <Footer />
       </div>
     </RequireAdmin>

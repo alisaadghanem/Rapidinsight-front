@@ -248,7 +248,6 @@ const Facilities = () => {
           >
             {facilities.map((facility, index) => {
               const { facilities, thumb, link } = facility;
-              // console.log("Facility:", facilities, "Thumb:", thumb);
               return (
                 <div key={index} className="facility-card bg-light">
                   <h1 className={isRtl ? "rtl" : ""}>{facilities}</h1>

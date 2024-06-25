@@ -99,7 +99,7 @@ function App() {
             }
           />
         </Route>
-        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog" element={<Blog />} component={() => <Blog firebaseConfig={firebaseConfig} />}/>
       </Routes>
       <ToastContainer />
     </div>

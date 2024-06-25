@@ -5,8 +5,6 @@
   padding: 3rem 4rem !important;
   border-radius: 50px;
 }
-.contact-form {
-}
 .contact-info {
   position: relative;
   height: 600px;
@@ -49,6 +47,10 @@ textarea {
   padding: 10px;
   border-radius: 10px;
   margin-top: 16px;
+}
+.msg-ta{
+  height: auto;
+  width: 90%;
 }
 .contact-info::after {
   content: "";

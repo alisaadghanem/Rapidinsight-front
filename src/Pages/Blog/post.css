@@ -1,0 +1,33 @@
+.card-title {
+  color: transparent;
+  font-weight: 900;
+  font-size: 3rem;
+  text-shadow: 0 10px 0 #ffe3d3;
+  -webkit-text-stroke: 2px #f17732;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 10px;
+}
+.b-group input,
+textarea {
+  width: 100%;
+  padding: 0.8rem;
+  border-radius: 10px;
+  display: block;
+  border: 2px solid #565acf;
+  outline-color: #f17732;
+}
+.b-group label {
+  text-transform: uppercase;
+  color: var(--primary-text);
+  font-weight: 600;
+  margin: 10px 0;
+}
+h5 {
+  color: var(--primary-text);
+  font-weight: bolder;
+  padding: 10px 0;
+  line-height: 1.4;
+  letter-spacing: 1.6px;
+  font-size: 1.2rem;
+}

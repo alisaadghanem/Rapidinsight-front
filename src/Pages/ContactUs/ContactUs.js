@@ -38,7 +38,7 @@ const ContactUs = () => {
               <label htmlFor="sub">{t("subject")}</label>
               <input required type="text" name="sub" />
             </div>
-            <div className="c-group">
+            <div className="c-group msg-ta">
               <label htmlFor="msg">{t("message")}</label>
               <textarea required name="" id="" cols="30" rows="10"></textarea>
             </div>

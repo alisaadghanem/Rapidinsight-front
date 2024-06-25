@@ -1,0 +1,100 @@
+.yes-no-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.yes-no-button {
+  flex: 1 1 calc(25% - 20px); /* Adjust the width of each button to fit 4 per row */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.yes-no-button label {
+  font-weight: bold;
+}
+
+.yes-no-button .btn {
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #f17732;
+  cursor: pointer;
+  color: #fff;
+}
+
+.yes-no-button .btn.selected {
+  background-color: #565acf;
+  color: #fff;
+}
+
+.f-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.f-group label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.f-group input {
+  width: 100%;
+  max-width: 300px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin: 0 auto;
+}
+
+.sugar-level-type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sugar-level-type h4 {
+  margin-bottom: 20px;
+  
+}
+
+.sugar-level-type .options {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.sugar-level-type .option {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+}
+
+.sugar-level-type .option.selected {
+  opacity: 1;
+  background-color: #f17732;
+  color: #fff;
+}
+
+.label {
+  text-transform: uppercase;
+  color: var(--primary-text);
+  font-weight: 600;
+  font-size: 14px;
+  margin: 10px 0;
+}
+

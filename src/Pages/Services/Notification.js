@@ -7,7 +7,6 @@ const Notification = ({ message, onClose }) => {
   return (
     <div className="notification-overlay">
       <div className="notification">
-        <h1 className="notification-title">{t("The Prediction Is")}</h1>
         <div className="notification-content">
           <h1 className="notification-title">{message}</h1>
         </div>
