@@ -58,8 +58,8 @@ const Services = () => {
       sugar_level: parseFloat(formData.sugarLevelValue), // Ensure sugar_level is numeric
     };
 
-    // Check if the sugar level test is A1cTest and multiply sugar level by 10
-    if (formData.sugarLevelType === "A1cTest") {
+    // Check if the sugar level test is HbA1cTest and multiply sugar level by 10
+    if (formData.sugarLevelType === "HbA1cTest") {
       predictionData.sugar_level *= 10;
     }
 
@@ -69,8 +69,8 @@ const Services = () => {
       endpoint = "/RBS";
     } else if (formData.sugarLevelType === "fastingSugar") {
       endpoint = "/FBS";
-    } else if (formData.sugarLevelType === "A1cTest") {
-      endpoint = "/HbA1c";
+    } else if (formData.sugarLevelType === "HbA1cTest") {
+      endpoint = "/HbHbA1c";
     }
 
     try {
@@ -332,11 +332,11 @@ const Services = () => {
                   </div>
                   <div
                     className={`option ${
-                      formData.sugarLevelType === "A1cTest" ? "selected" : ""
+                      formData.sugarLevelType === "HbA1cTest" ? "selected" : ""
                     }`}
-                    onClick={() => handleSugarLevelTypeChange("A1cTest")}
+                    onClick={() => handleSugarLevelTypeChange("HbA1cTest")}
                   >
-                    {t("A1c Test")}
+                    {t("HbA1c Test")}
                   </div>
                 </div>
               </div>
